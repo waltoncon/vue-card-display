@@ -33,20 +33,44 @@
                     {
                         design: 'monzo-hotCoral',
                         data: {
-                            longNumber: '1234 5678 9012 3456',
+                            longNumber: '4242 4242 4242 4242',
                             accountHolder: 'MR JOHN SMITH',
-                            expiryDate: 'EXP. 01/12'
+                            expiryDate: '01/12',
+                            cvc: '123'
                         }
                     },
                     {
-                        design: 'drivingLicence-provisional'
+                        design: 'drivingLicence-provisional',
+                        data: {
+                            photo: require(`./assets/stock-passport-photo.jpg`),
+                            surname: 'SMITH',
+                            firstName: 'JOHN MICHAEL',
+                            dob: '31.12.1980',
+                            placeOfBirth: 'UNITED KINGDOM',
+                            dateOfIssue: '',
+                            dateOfExpiry: '',
+                            issuedBy: '',
+                            licenceNumber: '',
+                            validFrom: '',
+                            validTo: '',
+                            codes: '',
+                            // photo: 'http://lorempixel.com/400/200'
+                        }
                     },
+                    // {
+                    //     design: 'visa'
+                    // },
                     {
-                        design: 'visa'
+                        design: 'natwest-visaDebit',
+                        data: {
+                            longNumber: '4242 4242 4242 4242',
+                            accountHolder: 'MR JOHN SMITH',
+                            expiryDate: '01/12',
+                            cvc: '123'
+                        }
                     },
-                    {
-                        design: 'natwest-visaDebit'
-                    }
+                    {design: 'revolut-plasticPurpleBlue'},
+                    {design: 'revolut-plasticRoseGold'},
                 ]
             }
         },

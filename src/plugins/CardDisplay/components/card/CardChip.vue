@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "Rectangle",
+        name: "CardChip",
         props: {
             field: {
                 required: false,
@@ -14,11 +14,13 @@
         data() {
             return {
                 defaultStyle: {
+                    background: 'silver',
+                    borderRadius: '4px',
                     position: 'absolute',
-                    height: '10mm',
-                    width: '10mm',
-                    top: '1mm',
-                    left: '1mm',
+                    height: '9mm',
+                    width: '12mm',
+                    top: '18mm',
+                    left: '9mm',
                 }
             }
         }

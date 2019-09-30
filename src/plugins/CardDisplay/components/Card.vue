@@ -2,8 +2,7 @@
     <!--    <div @dblclick="flip" @contextmenu.prevent="flip" class="card-plastic" @mouseleave="front = true" v-tilt="tiltOptions">-->
     <transition name="slide-fade" mode="out-in">
         <div :key="side" v-tilt="tiltOptions" class="card" :style="{width, height, ...style}" @click="flip">
-            <div v-for="(field, key) in layout" :key="key" :is="field.type" :data="data[field.input]"
-                 :field="field"></div>
+            <card-module v-for="(module, key) in layout" :key="key" :module="module" :data="data"></card-module>
         </div>
     </transition>
 </template>
@@ -12,14 +11,11 @@
     import {sizes, designs, defaultDesign} from '../index'
     import VanillaTilt from 'vanilla-tilt'
 
-    import TextEmbossed from "./card/TextEmbossed";
-    import Chip from './card/Chip';
-    import Logo from './card/Logo';
-    import Rectangle from './card/Rectangle';
+    import CardModule from "./CardModule";
 
     export default {
         name: "Card",
-        components: {TextEmbossed, Chip, Logo, Rectangle},
+        components: {CardModule},
         directives: {
             tilt: {
                 inserted: function (el, binding) {
@@ -55,7 +51,8 @@
         },
         computed: {
             layout() {
-                return this.layoutFilter(this.side);
+                return (this.card.layout || {})[this.side];
+                // return this.layoutFilter(this.side);
             },
             // layout() {
             //    return {

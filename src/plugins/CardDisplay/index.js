@@ -2,7 +2,7 @@ import WebFontLoader from 'webfontloader';
 
 WebFontLoader.load({
     google: {
-        families: ['Kelly Slab', 'Mansalva']
+        families: ['Kelly Slab', 'Yanone Kaffeesatz:light', 'Montserrat']
     },
 })
 
