@@ -17,7 +17,24 @@
   transition: opacity .3s ease;
 }
 
-.component-fade-enter, .component-fade-leave-to
-{
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
+}
+
+
+@keyframes Logo {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+svg {
+  width: inherit;
+  height: inherit;
 }

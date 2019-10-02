@@ -2,13 +2,21 @@
     <!--    <div @dblclick="flip" @contextmenu.prevent="flip" class="card-plastic" @mouseleave="front = true" v-tilt="tiltOptions">-->
     <transition name="slide-fade" mode="out-in">
         <div :key="side" v-tilt="tiltOptions" class="card" :style="{width, height, ...style}" @click="flip">
+            <div v-if="options.debug" class="debug">
+                <pre class="name">id: {{ design }}</pre>
+                <pre>name: '{{ card.name }}'</pre>
+                <pre>template: '{{ card.template }}'</pre>
+                <pre>data: {{ data || 'null' }}</pre>
+                <pre>details: {{ card.details || 'null' }}</pre>
+                <pre>layout: {{ layout || 'null' }}</pre>
+            </div>
             <card-module v-for="(module, key) in layout" :key="key" :module="module" :data="data"></card-module>
         </div>
     </transition>
 </template>
 
 <script>
-    import {sizes, designs, defaultDesign} from '../index'
+    import {sizes, designs, defaultDesign, options} from '../index'
     import VanillaTilt from 'vanilla-tilt'
 
     import CardModule from "./CardModule";
@@ -35,7 +43,7 @@
             },
             data: {
                 type: Object
-            }
+            },
         },
         data() {
             return {
@@ -46,7 +54,8 @@
                     scale: 1.2,
                     glare: true,
                     'max-glare': 0.5,
-                }
+                },
+                options
             }
         },
         computed: {
@@ -109,10 +118,35 @@
         border-radius: 10px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
         overflow: hidden;
+        background: repeating-linear-gradient(45deg, #EFEFEF, #EFEFEF 3mm, #DEDEDE 3mm, #DEDEDE 6mm)
         /*z-index: 0;*/
     }
 
     .card:hover {
         z-index: 1;
+    }
+
+    div.debug {
+        background: linear-gradient(to right, #333333 30%, rgba(0,0,0,0.3));
+        display: inline-block;
+        padding: 4px 0;
+        color: #fff;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    div::-webkit-scrollbar {
+        display: none;
+    }
+
+    pre {
+        padding: 4px 16px;
+    }
+
+    pre:not(.name) {
+        font-size: 0.8em;
     }
 </style>

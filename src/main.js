@@ -4,6 +4,7 @@ import CardDisplay from './plugins/CardDisplay'
 import './plugins/CardDisplay/styles.scss'
 
 Vue.use(CardDisplay, {
+    // debug: true
 });
 
 

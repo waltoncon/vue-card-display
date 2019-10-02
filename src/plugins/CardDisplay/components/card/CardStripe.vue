@@ -1,11 +1,12 @@
 <template>
-    <div :style="{...defaultStyle, ...field.style }"></div>
+    <div :style="style"></div>
 </template>
 
 <script>
+    import BaseModule from "./BaseModule";
     export default {
+        extends: BaseModule,
         name: "CardStripe",
-        props: ['data', 'field', 'default'],
         data() {
             return {
                 defaultStyle: {

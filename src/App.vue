@@ -2,16 +2,23 @@
     <div id="app">
         <div class="form">
             <div class="form-item">
+                <label>Click card to flip</label>
+            </div>
+            <div class="form-item">
                 <label for="card-sizing">Card Sizing</label>
                 <select v-model="currentStyle" id="card-sizing">
                     <option v-for="option in sizes" :key="option" :value="option">{{ option }}</option>
                 </select>
             </div>
+            <div class="form-item">
+                <label for="card-sizing">Debug (Press D)</label>
+                <input type="checkbox" v-model="options.debug">
+            </div>
         </div>
 
         <div class="card-deck">
             <div class="card-wrapper" v-for="(card, key) in cards" :key="key">
-                <card :type="currentStyle" :design="card.design" :data="card.data"></card>
+                <card :type="currentStyle" :design="card.design" :data="card.data" :side="side"></card>
             </div>
         </div>
     </div>
@@ -19,7 +26,8 @@
 
 <script>
     import Card from "./plugins/CardDisplay/components/Card";
-    import {sizes} from './plugins/CardDisplay/index'
+    import {sizes, options} from './plugins/CardDisplay/index'
+    import cards from "./cards";
 
     export default {
         name: 'app',
@@ -29,49 +37,9 @@
         data() {
             return {
                 currentStyle: 'id-1',
-                cards: [
-                    {
-                        design: 'monzo-hotCoral',
-                        data: {
-                            longNumber: '4242 4242 4242 4242',
-                            accountHolder: 'MR JOHN SMITH',
-                            expiryDate: '01/12',
-                            cvc: '123'
-                        }
-                    },
-                    {
-                        design: 'drivingLicence-provisional',
-                        data: {
-                            photo: require(`./assets/stock-passport-photo.jpg`),
-                            surname: 'SMITH',
-                            firstName: 'JOHN MICHAEL',
-                            dob: '31.12.1980',
-                            placeOfBirth: 'UNITED KINGDOM',
-                            dateOfIssue: '',
-                            dateOfExpiry: '',
-                            issuedBy: '',
-                            licenceNumber: '',
-                            validFrom: '',
-                            validTo: '',
-                            codes: '',
-                            // photo: 'http://lorempixel.com/400/200'
-                        }
-                    },
-                    // {
-                    //     design: 'visa'
-                    // },
-                    {
-                        design: 'natwest-visaDebit',
-                        data: {
-                            longNumber: '4242 4242 4242 4242',
-                            accountHolder: 'MR JOHN SMITH',
-                            expiryDate: '01/12',
-                            cvc: '123'
-                        }
-                    },
-                    {design: 'revolut-plasticPurpleBlue'},
-                    {design: 'revolut-plasticRoseGold'},
-                ]
+                side: 'front',
+                cards,
+                options
             }
         },
         computed: {
@@ -90,6 +58,7 @@
         margin-top: 20px;
         display: flex;
         min-height: 100vh;
+        margin-left: 170px;
     }
 
     .card-deck {
@@ -108,10 +77,15 @@
 
 
     .form {
+        position: fixed;
+        top: 0;
+        left: 0;
         background: #EFEFEF;
         padding: 8px 16px;
-        width: 200px;
+        width: 150px;
+        height: 100vh;
     }
+
     .form .form-item {
         display: flex;
         flex-direction: column;
@@ -119,12 +93,13 @@
         padding-bottom: 4px;
         margin-bottom: 4px;
     }
+
     .form .form-item:last-child {
         border-bottom: none;
     }
+
     .form .form-item label {
         display: block;
-        width: 100px;
         text-align: left;
         margin-bottom: 4px;
     }

@@ -1,26 +1,35 @@
 <template>
-    <div class="shine" :style="{...defaultStyle, ...field.style }"></div>
+    <div class="shine" :style="style"></div>
 </template>
 
 <script>
+    import BaseModule from "./BaseModule";
     export default {
+        extends: BaseModule,
         name: "CardShine",
-        props: ['data', 'field', 'default'],
         data() {
             return {
                 defaultStyle: {
                     position: 'absolute',
                     width: '20mm',
                     height: '12mm',
-                    background: 'grey'
+                    // background: 'grey'
+                },
+                modifiers: {
+                    holo: {
+                        background: 'linear-gradient(270deg, #ec1414, #eccb14, #14ec1c, #14eaec, #1914ec, #ec14da)',
+                        backgroundSize: '1200% 1200%',
+                        animation: 'Logo 4s ease infinite',
+                    }
                 }
             }
-        }
+        },
     }
 </script>
 
 <style scoped>
     .shine {
+        background: grey;
         width: 100%; /*Make sure the animation is over the whole element*/
         height: 100%; /*Make sure the animation is over the whole element*/
 
@@ -32,7 +41,7 @@
 
     }
 
-    @-webkit-keyframes ShineAnimation {
+    @keyframes ShineAnimation {
         from {
             background-repeat: no-repeat;
             background-image: linear-gradient(

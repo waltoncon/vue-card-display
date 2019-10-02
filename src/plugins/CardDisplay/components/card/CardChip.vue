@@ -1,16 +1,12 @@
 <template>
-    <div :style="{...defaultStyle, ...field.style }"></div>
+    <div :style="style"></div>
 </template>
 
 <script>
+    import BaseModule from "./BaseModule";
     export default {
+        extends: BaseModule,
         name: "CardChip",
-        props: {
-            field: {
-                required: false,
-                type: Object
-            }
-        },
         data() {
             return {
                 defaultStyle: {

@@ -1,32 +1,30 @@
 <template>
-    <img :src="image" :style="{...defaultStyle, ...field.style }">
+    <img v-if="selectorImage" :src="output" :style="style">
+    <div v-else-if="selectorSvg" v-html="output" :style="style"></div>
 </template>
 
 <script>
+    import BaseModule from "./BaseModule";
     export default {
+        extends: BaseModule,
         name: "CardImage",
-        props: {
-            data: {
-                // required: true
-            },
-            field: {
-                // required: true,
-                // type: Object
-            },
-            default: {}
-        },
         data() {
             return {
                 defaultStyle: {
                     position: 'absolute',
-                    // left: '0',
-                    // top: '0',
+                    left: 'auto',
+                    top: 'auto',
                 }
             }
         },
         computed: {
-            image() {
-                return this.data || this.default;
+            selectorImage() {
+                return this.field.options === undefined
+                    || this.field.options.type === 'image'
+                    || this.field.options.type === undefined;
+            },
+            selectorSvg() {
+                return this.field.options.type === 'svg'
             }
         }
     }

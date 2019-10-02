@@ -19,7 +19,7 @@
         computed: {
             display() {
                 // return true;
-                return !(this.passThroughData === null && !!this.module.input) || !!this.passThroughDefault;
+                return (!(this.passThroughData === null && !!this.module.input) || !!this.passThroughDefault) && this.module.display !== false;
             },
             passThroughData() {
                 return (this.data || {})[this.module.input] || null;
