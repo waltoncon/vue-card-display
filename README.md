@@ -1,29 +1,16 @@
 # vue-card-display
 
-## Project setup
-```
-yarn install
-```
+## Installation
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## Configuration
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+| Name                | Type      | Default | Description                                                                                                        |
+| ------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `loadDefaultDesign` | `boolean` | `true`  | Should the default designs be loaded. If false, only custom designs provided with `options.designs` will be loaded |
+| `designs`           | `Object`  | `{}`    | An object containing new designs created by you to be loaded                                                       |
+| `debug`             | `boolean` | `false` | Show the debug information over the cards                                                                          |
 
-### Run your tests
-```
-yarn run test
-```
+## Creating designs
 
-### Lints and fixes files
-```
-yarn run lint
-```
+Provide the `options.designs` object with all of the custom designs you want to load
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
